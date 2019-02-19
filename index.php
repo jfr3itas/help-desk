@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <html>
   <head>
     <meta charset="utf-8" />
@@ -18,7 +20,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
-        <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="imagens/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
       </a>
     </nav>
@@ -32,13 +34,41 @@
               Login
             </div>
             <div class="card-body">
-              <form>
+              <form action="controle/valida_login.php" method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="E-mail">
+                  <input name="email" type="email" class="form-control" placeholder="E-mail">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Senha">
+                  <input name="senha" type="password" class="form-control" placeholder="Senha">
                 </div>
+
+                <?php
+
+                  if(isset($_GET['login']) && $_GET['login'] == 'erro') {
+
+                ?>
+
+                <div class="text-danger mb-2">
+                  Usuário ou senha inválidos.
+                </div>
+
+                <?php 
+                  
+                  } 
+                
+                  if(isset($_GET['login']) && $_GET['login'] == 'erro2') {
+
+                ?>
+                  <div class="text-danger mb-2">
+                    Você não possui permissão para acessar essa página.
+                  </div>
+
+                <?php
+
+                  }
+
+                ?>
+
                 <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
               </form>
             </div>
